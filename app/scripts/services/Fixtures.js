@@ -31,6 +31,8 @@
              { title: 'Wrong phone number', duration: '2:15' }
          ]
      };
+     return Fixtures;
+   }
 
      return {
        getAlbum: function() {
@@ -44,7 +46,7 @@
          return albums;
        }
      };
-   };
+   }
 
   angular
       .module('blocJams')
