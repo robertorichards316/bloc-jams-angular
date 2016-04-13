@@ -44,7 +44,7 @@
          return albums;
        }
      };
-   });
+   };
 
   angular
       .module('blocJams')
