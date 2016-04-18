@@ -7,7 +7,7 @@
          artist: 'Pablo Picasso',
          label: 'Cubism',
          year: '1881',
-         albumArtUrl: '/assets/images/album_covers/01.png',
+         albumArtUrl: '/assets/images/album_covers/08.png',
          songs: [
              { title: 'Blue', duration: '161.71', audioUrl: '/assets/music/blue' },
              { title: 'Green', duration: '103.96', audioUrl: '/assets/music/green' },
@@ -31,21 +31,21 @@
              { title: 'Wrong phone number', duration: '2:15' }
          ]
      };
-     return Fixtures;
-   }
 
-     return {
-       getAlbum: function() {
-         return albumPicasso;
-       },
-       getCollection: function(numberOfAlbums) {
-         var albums = [];
-         for(var i = 0; i < numberOfAlbums; i++) {
-           albums.push(albumPicasso);
-         }
-         return albums;
-       }
+     Fixtures.getAlbum = function() {
+       return albumPicasso;
      };
+
+     Fixtures.getCollection = function(numberOfAlbums) {
+       nbrOfAlbums=parseInt(numberOfAlbums);
+       var albums = [];
+       for(var i = 0; i < nbrOfAlbums; i++) {
+         albums.push(angular.copy(albumPicasso));
+       }
+       return albums;
+     };
+
+     return Fixtures;
    }
 
   angular

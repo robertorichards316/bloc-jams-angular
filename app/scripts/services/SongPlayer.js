@@ -46,10 +46,11 @@
 
       SongPlayer.currentSong = song;
     };
-//private function
+
     var playSong = function(song) {
       if(currentBuzzObject) {
         currentBuzzObject.play();
+        SongPlayer.currentSong.playing = true;
         song.playing = true;
       }
     };
@@ -63,22 +64,30 @@
 
       } else if (SongPlayer.currentSong === song) {
           if(currentBuzzObject.isPaused()) {
+            //currentBuzzObject.play();
+            //song.playing = true;
             playSong(song);
           }
         }
     };
+    /**
+     * @function pause
+     * @desc Pause current song
+     * @param {Object} song
+     */
 
     SongPlayer.pause = function(song) {
       song = song || SongPlayer.currentSong;
+
       currentBuzzObject.pause();
       song.playing = false;
     };
 
-      SongPlayer.currentSong = song;
+      /*SongPlayer.currentSong = song;
       playSong();
 
       }
-    };
+    };*/
 
     SongPlayer.previous = function() {
       var currentSongIndex = getSongIndex(SongPlayer.currentSong);
@@ -114,7 +123,6 @@
         playSong(song);
       }
     };
-
 
     return SongPlayer;
   }
