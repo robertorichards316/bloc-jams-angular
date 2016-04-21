@@ -27,12 +27,15 @@
     var setSong = function(song) {
       if(currentBuzzObject) {
         currentBuzzObject.stop();
-        SongPlayer.currentSong.playing = null;
+        currentSong.playing = null;
       }
       currentBuzzObject = new buzz.sound(song.audioUrl, {
         formats: ['mp3'],
         preload: true
       });
+
+      SongPlayer.currentSong = song;
+    };
 
     /**
     *@function getSongIndex
@@ -44,40 +47,40 @@
       return currentAlbum.songs.indexOf(song);
     };
 
-      SongPlayer.currentSong = song;
-    };
-//private function
     var playSong = function(song) {
-      if(currentBuzzObject) {
-        currentBuzzObject.play();
-        song.playing = true;
-      }
+      currentBuzzObject.play();
+      song.playing = true;
+    };
+
+    var stopSong = function(song) {
+      currentBuzzObject.stop();
+      song.playing = null;
     };
 
     SongPlayer.play = function(song) {
       song = song || SongPlayer.currentSong;
-      if(SongPlayer.currentSong !== song) {
-
+      if(SongPlayer.currentSong!== song) {
         setSong(song);
         playSong(song);
 
       } else if (SongPlayer.currentSong === song) {
           if(currentBuzzObject.isPaused()) {
+            //currentBuzzObject.play();
             playSong(song);
           }
         }
     };
+    /**
+     * @function pause
+     * @desc Pause current song
+     * @param {Object} song
+     */
 
     SongPlayer.pause = function(song) {
       song = song || SongPlayer.currentSong;
+
       currentBuzzObject.pause();
       song.playing = false;
-    };
-
-      SongPlayer.currentSong = song;
-      playSong();
-
-      }
     };
 
     SongPlayer.previous = function() {
@@ -102,19 +105,18 @@
 
     SongPlayer.next = function() {
       var currentSongIndex = getSongIndex(SongPlayer.currentSong);
-      currentSongIndex--;
+      currentSongIndex++;
 
-      if(currentSongIndex < 0) {
-        currentBuzzObject.stop();
-        SongPlayer.song.playing = null;
+      if(currentSongIndex >= currentAlbum.songs.length) {
+        stopSong(SongPlayer.currentSong);
+
 
       } else {
-        var stopSong = currentAlbum.songs[currentSongIndex];
+        var song = currentAlbum.songs[currentSongIndex];
         setSong(song);
         playSong(song);
       }
     };
-
 
     return SongPlayer;
   }
