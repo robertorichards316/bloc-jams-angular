@@ -7,13 +7,13 @@
          artist: 'Pablo Picasso',
          label: 'Cubism',
          year: '1881',
-         albumArtUrl: '/assets/images/album_covers/08.png',
+         albumArtUrl: '/assets/images/album_covers/09.png',
          songs: [
-             { title: 'Blue', duration: '161.71', audioUrl: '/assets/music/blue' },
-             { title: 'Green', duration: '103.96', audioUrl: '/assets/music/green' },
-             { title: 'Red', duration: '268.45', audioUrl: '/assets/music/red' },
-             { title: 'Pink', duration: '153.14', audioUrl: '/assets/music/pink' },
-             { title: 'Magenta', duration: '374.22', audioUrl: '/assets/music/magenta' }
+             { name: 'Blue', length: '161.71', audioUrl: '/assets/music/blue' },
+             { name: 'Green', length: '103.96', audioUrl: '/assets/music/green' },
+             { name: 'Red', length: '268.45', audioUrl: '/assets/music/red' },
+             { name: 'Pink', length: '153.14', audioUrl: '/assets/music/pink' },
+             { name: 'Magenta', length: '374.22', audioUrl: '/assets/music/magenta' }
          ]
      };
 

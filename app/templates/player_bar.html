@@ -1,8 +1,8 @@
 <section class="player-bar" ng-controller="PlayerBarCtrl as playerBar">
      <div class="container">
          <div class="control-group main-controls">
-             <a class="previous" ng-click="playerBar.songPlayer.previous()">
-                 <span class="ion-skip-backward"></span>
+             <a class="previous">
+                 <span class="ion-skip-backward" ng-click="playerBar.songPlayer.previous()"></span>
              </a>
              <a class="play-pause">
                  <span class='ion-play'
@@ -15,13 +15,13 @@
                  </span>
              </a>
              <a class="next">
-                 <span class="ion-skip-forward"></span>
+                 <span class="ion-skip-forward" ng-click="playerBar.songPlayer.next()"></span>
              </a>
          </div>
          <div class="control-group currently-playing">
-             <h2 class="song-name"></h2>
-             <h2 class="artist-song-mobile"></h2>
-             <h3 class="artist-name"></h3>
+             <h2 class="song-name">{{ playerBar.songPlayer.currentSong.name }}</h2>
+             <h2 class="artist-song-mobile"> {{ playerBar.songPlayer.currentSong.name }} {{ playerBar.albumData.artist }}</h2>
+             <h3 class="artist-name">{{ playerBar.albumData.artist }}</h3>
              <div class="seek-control">
                  <div class="seek-bar">
                      <div class="fill"></div>
