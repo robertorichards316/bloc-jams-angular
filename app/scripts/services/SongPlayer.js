@@ -23,11 +23,10 @@
      * @desc Stops currently playing song and loads new audio file as currentBuzzObject
      * @param {Object} song
      */
-//currentBuzzObject is created inside setSong
+
     var setSong = function(song) {
       if(currentBuzzObject) {
-        currentBuzzObject.stop();
-        currentSong.playing = null;
+        stopSong();
       }
       currentBuzzObject = new buzz.sound(song.audioUrl, {
         formats: ['mp3'],
@@ -52,9 +51,9 @@
       song.playing = true;
     };
 
-    var stopSong = function(song) {
+    var stopSong = function() {
       currentBuzzObject.stop();
-      song.playing = null;
+      SongPlayer.currentSong.playing = null;
     };
 
     SongPlayer.play = function(song) {
@@ -65,7 +64,6 @@
 
       } else if (SongPlayer.currentSong === song) {
           if(currentBuzzObject.isPaused()) {
-            //currentBuzzObject.play();
             playSong(song);
           }
         }
@@ -88,8 +86,7 @@
       currentSongIndex--;
 
       if(currentSongIndex < 0) {
-        currentBuzzObject.stop();
-        SongPlayer.currentSong.playing = null;
+        stopSong();
 
       } else {
         var song = currentAlbum.songs[currentSongIndex];
@@ -108,7 +105,7 @@
       currentSongIndex++;
 
       if(currentSongIndex >= currentAlbum.songs.length) {
-        stopSong(SongPlayer.currentSong);
+        stopSong();
 
 
       } else {
