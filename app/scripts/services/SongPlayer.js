@@ -68,6 +68,7 @@
           }
         }
     };
+    
     /**
      * @function pause
      * @desc Pause current song
