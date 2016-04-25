@@ -29,6 +29,8 @@
      * @param {Object} song
      */
 
+     SongPlayer.volume = null;
+
     var setSong = function(song) {
       if(currentBuzzObject) {
         stopSong();
@@ -37,10 +39,17 @@
         formats: ['mp3'],
         preload: true
       });
+      currentBuzzObject.setVolume(75);
 
       currentBuzzObject.bind('timeupdate', function() {
         $rootScope.$apply(function() {
           SongPlayer.currentTime = currentBuzzObject.getTime();
+        });
+      });
+
+      currentBuzzObject.bind('changevolume', function() {
+        $rootScope.$apply(function() {
+          SongPlayer.volume = currentBuzzObject.updateVolume();
         });
       });
 
@@ -123,6 +132,12 @@
         var song = currentAlbum.songs[currentSongIndex];
         setSong(song);
         playSong(song);
+      }
+    };
+
+    SongPlayer.setVolume = function(volume) {
+      if(currentBuzzObject) {
+        currentBuzzObject.setVolume(volume)
       }
     };
 
