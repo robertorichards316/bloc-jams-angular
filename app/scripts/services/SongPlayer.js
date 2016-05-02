@@ -111,13 +111,11 @@
       currentSongIndex--;
 
       if(currentSongIndex < 0) {
-        stopSong();
-
-      } else {
-        var song = currentAlbum.songs[currentSongIndex];
-        setSong(song);
-        playSong(song);
+        currentSongIndex = currentAlbum.songs.length - 1;
       }
+      var song = currentAlbum.songs[currentSongIndex];
+      setSong(song);
+      playSong(song);
     };
     /**
     *@function SongPlayer.previous
@@ -130,13 +128,11 @@
       currentSongIndex++;
 
       if(currentSongIndex >= currentAlbum.songs.length) {
-        stopSong();
-
-      } else {
-        var song = currentAlbum.songs[currentSongIndex];
-        setSong(song);
-        playSong(song);
+        currentSongIndex = 0;
       }
+      var song = currentAlbum.songs[currentSongIndex];
+      setSong(song);
+      playSong(song);
     };
 
     SongPlayer.setVolume = function(volume) {
